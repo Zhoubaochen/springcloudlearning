@@ -1,0 +1,5 @@
+server:
+  port: 9433
+spring:
+  application:
+    name: sleuth-server
