@@ -1,23 +1,24 @@
 // Declarative //
 // this is for jenkins pipeline learning //
+// Declarative //
 pipeline {
   agent any
   stages {
-   stage('Build') {
-    steps { 
-      sh 'make' 
-    }
-   }
-  stage('Test'){
-   steps {
-     sh 'make check'
-     junit 'reports/**/*.xml' 
-    }
+  stage('Build') {
+  steps {
+  echo 'Building..'
+  }
+  }
+  stage('Test') {
+  steps {
+  echo 'Testing..'
+  }
   }
   stage('Deploy') {
-   steps {
-    sh 'make publish'
-   }
+  steps {
+  echo 'Deploying....'
+  }
   }
   }
 }
+
