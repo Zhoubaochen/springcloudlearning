@@ -1,9 +1,7 @@
 // Declarative //
-// this is for jenkins pipeline learning //
-// Declarative //
 pipeline {
-  agent any
-  stages {
+  agent any
+  stages {
   stage('Build') {
   steps {
   echo 'Building..'
