@@ -47,15 +47,20 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
+			<!-- 详见：https://github.com/spotify/docker-maven-plugin-->
+			    <!-- mvn clean package docker:build -->
+			    <!-- docker run -p 8761:8761 sc-eureka-server -->
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.13</version>
                 <configuration>
-                    <!-- 注意imageName一定要是符合正则[a-z0-9-_.]的，否则构建不会成功 -->
-                    <!-- 详见：https://github.com/spotify/docker-maven-plugin    Invalid repository name ... only [a-z0-9-_.] are allowed-->
-                    
+                    <!-- win7toolbox需要配置以下两行 -->
+                    <!-- 插件默认使用localhost:2375去连接Docker如果Docker端口不是2375 需要配置环境变量DOCKER_HOST=tcp://<host>:2375 -->
+                    <dockerHost>https://192.168.99.100:2376</dockerHost>
+                    <dockerCertPath>C:\Users\Administrator\.docker\machine\machines\default</dockerCertPath>
+                    <!-- 注意imageName要是符合正则[a-z0-9-_.]的否则构建不会成功 -->
                     <imageName>${project.name}:${project.version}</imageName>
-                    <baseImage>java</baseImage>
+                    <baseImage>java:alpine</baseImage>
                     <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
                     <resources>
                         <resource>
@@ -64,6 +69,22 @@
                             <include>${project.build.finalName}.jar</include>
                         </resource>
                     </resources>
+                    <!-- 以上等价于/src/main/docker/Dockerfile:
+                      FROM java
+                      ADD /sc-eureka-server-0.1.0.jar //
+                      ENTRYPOINT java -jar /sc-eureka-server-0.1.0.jar
+                      
+                                                       指定Dockerfile所在的路径 
+                      <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+                    -->
+                    <!-- 发布到镜像私库，serverId在maven配置文件settings.xml一致 
+                     <imageName>镜像私库地址/${project.name}:${project.version}</imageName>
+                     <serverId>docker-registry</serverId>
+                     -->
+                     <!-- 以下两行是为了docker push到DockerHub使用的。 
+                    <serverId>docker-hub</serverId>
+                    <registryUrl>https://index.docker.io/v1/</registryUrl>
+                    -->
                 </configuration>
             </plugin>
 		</plugins>
