@@ -55,7 +55,7 @@
                     <!-- 详见：https://github.com/spotify/docker-maven-plugin    Invalid repository name ... only [a-z0-9-_.] are allowed-->
                     
                     <imageName>${project.name}:${project.version}</imageName>
-                    <baseImage>java</baseImage>
+                    <baseImage>java:alpine</baseImage>
                     <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
                     <resources>
                         <resource>
