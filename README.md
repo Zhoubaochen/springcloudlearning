@@ -1,8 +1,6 @@
 # springcloudlearning
-for spring cloud microservices learning[2018-02-05,shenzhen,baishizhou]</br>
+for spring cloud microservices learning[2018-02-05,shenzhen,baishizhou]
 do with the [cloud.spring.io](cloud.spring.io),include CI/CD with Jenkins,deploy as image with Docker.
-
-[TOC]
 
 ### 前提：
 本项目工程使用java1.8,maven3.3
@@ -69,7 +67,11 @@ public class Application {
 </project>
 
 ```
-若需要打包成docker镜像，则可以引入一个[maven插件](https://github.com/spotify/docker-maven-plugin),>**注意：**对于使用win7环境下的[Docker Toolbox](https://docs.docker.com/toolbox/)的用户要有以下\<dockerHost>和\<dockerCertPath>的配置，否则会报错`com.spotify.docker.client.shaded.javax.ws.rs.ProcessingException`,使用`mvn clean package docker:build`打包镜像到Docker仓库。成功后可以`docker run -p 8761:8761 sc-eureka-server`启动运行。
+若需要打包成docker镜像，则可以引入一个[maven插件](https://github.com/spotify/docker-maven-plugin)
+
+> **注意:** 对于使用win7环境下的[Docker Toolbox](https://docs.docker.com/toolbox/)的用户要有以下\<dockerHost>和\<dockerCertPath>的配置，否则会报错`com.spotify.docker.client.shaded.javax.ws.rs.ProcessingException`.
+
+使用`mvn clean package docker:build`打包镜像到Docker仓库。成功后可以`docker run -p 8761:8761 sc-eureka-server`启动运行。
 ```xml
 <plugin>
 	<!--详见：https://github.com/spotify/docker-maven-plugin-->
