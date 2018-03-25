@@ -1,10 +1,15 @@
-# springcloudlearning
+springcloudlearning
+===
+
 for spring cloud microservices learning[2018-02-05,shenzhen]<br>
 do with the [cloud.spring.io](cloud.spring.io),include CI/CD with Jenkins,deploy as image with Docker.
 
 ### 前提：
 本项目工程使用java1.8,maven3.3
-## sc-eureka-server
+
+sc-eureka-server
+---
+
 这是微服务注册中心，只需要加入Eureka-Server的依赖，在Spring Boot主程序添加一个`@EnableEurekaServer`即可。</br>
 主要是配置项，包括pom.xml,application.yml,Jenkinsfile,Dockerfile.
 ```java
@@ -94,11 +99,7 @@ public class Application {
                    <include>${project.build.finalName}.jar</include>
                </resource>
            </resources>
-           <!-- 以上等价于/src/main/docker/Dockerfile:
-             FROM java
-             ADD /sc-eureka-server-0.1.0.jar //
-             ENTRYPOINT java -jar /sc-eureka-server-0.1.0.jar
-             指定Dockerfile所在的路径 
+           <!-- 以上等价于指定Dockerfile所在的路径 
              <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
            -->
            <!-- 发布到镜像私库，serverId在maven配置文件settings.xml一致 
