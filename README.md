@@ -76,7 +76,13 @@ public class Application {
 
 > **注意:** 对于使用win7环境下的[Docker Toolbox](https://docs.docker.com/toolbox/)的用户要有以下\<dockerHost>和\<dockerCertPath>的配置，否则会报错`com.spotify.docker.client.shaded.javax.ws.rs.ProcessingException`.
 ---
-使用`mvn clean package docker:build`打包镜像到Docker仓库。成功后可以`docker run -p 8761:8761 sc-eureka-server`启动运行。
+使用`mvn clean package docker:build`打包镜像到Docker仓库
+
+![](https://github.com/Zhoubaochen/images/blob/master/springcloudlearning/20180325112928.png)
+
+成功后可以在仓库中看到镜像，执行`docker run -p 8761:8761 sc-eureka-server`启动运行
+![](https://github.com/Zhoubaochen/images/blob/master/springcloudlearning/20180325112943.png)
+
 ```xml
 <plugin>
 	<!--详见：https://github.com/spotify/docker-maven-plugin-->
