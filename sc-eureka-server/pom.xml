@@ -16,8 +16,8 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka-server</artifactId>
-		</dependency>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+		</dependency> 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -59,7 +59,7 @@
                     <dockerHost>https://192.168.99.100:2376</dockerHost>
                     <dockerCertPath>C:\Users\Administrator\.docker\machine\machines\default</dockerCertPath>
                     <!-- 注意imageName要是符合正则[a-z0-9-_.]的否则构建不会成功 -->
-                    <imageName>${project.name}:${project.version}</imageName>
+                    <imageName>192.168.99.100:5000/${project.name}:${project.version}</imageName>
                     <baseImage>java:alpine</baseImage>
                     <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
                     <resources>
@@ -85,11 +85,12 @@
                     <serverId>docker-hub</serverId>
                     <registryUrl>https://index.docker.io/v1/</registryUrl>
                     -->
+                    
                 </configuration>
             </plugin>
 		</plugins>
 	</build>
-   <!-- 配置远程仓库的地址-->
+   <!-- 配置远程仓库的地址
 	<repositories>
 		<repository>
 			<id>repo-for-springcloud</id>
@@ -102,8 +103,8 @@
 				<enabled>true</enabled>
 			</releases>
 		</repository>
-	</repositories>
-	<!-- 配置部署的地址-->
+	</repositories>-->
+	<!-- 配置部署的地址
 	<distributionManagement>
 		<repository>
 			<id>sc-releases</id>
@@ -115,5 +116,5 @@
 			<name>sc-snapshots repository</name>
 			<url>http://192.168.1.102:8081/repository/sc-snapshots/</url>
 		</snapshotRepository>
-	</distributionManagement>
+	</distributionManagement>-->
 </project>
