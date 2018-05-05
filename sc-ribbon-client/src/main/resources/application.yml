@@ -1,9 +1,15 @@
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://peer2:8760/eureka/
 server:
   port: 8764
 spring:
   application:
     name: service-ribbon
+  cloud:
+    inetutils:
+      preferredNetworks:
+        - 10.0
+eureka:
+  instance:
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.int}}
+  client:
+    serviceUrl:
+      defaultZone: http://eurekaServer:8761/eureka/
