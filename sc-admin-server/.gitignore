@@ -1,3 +1,9 @@
 /target/
 /.settings/
 /.classpath
+/.mvn/wrapper/
+/gradle/wrapper/
+/.project
+/build.gradle
+/gradlew*
+/mvnw*
